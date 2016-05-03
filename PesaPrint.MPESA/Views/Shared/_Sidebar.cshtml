@@ -1,0 +1,23 @@
+@using PesaPrint.MPESA.Helpers
+<!-- START Sidebar (left)-->
+<div class="aside-inner">
+    <nav class="sidebar">
+        <!-- START sidebar nav-->
+        <ul class="nav">
+            <!-- END user info-->
+            <!-- Iterates over all sidebar items-->
+            <li class="nav-heading">
+                <span>Main Navigation</span>
+            </li>
+            <li class="@Html.isActive(controller: "Admin")">
+                <a href="@Url.Action("Index",new{controller="Home",area="Admin"})" title="Admin Area">
+                    <em class="icon-speedometer"></em>
+                    <span>Admin Area</span>
+                </a>
+            </li>
+           
+        </ul>
+        <!-- END sidebar nav-->
+    </nav>
+</div>
+<!-- END Sidebar (left)-->

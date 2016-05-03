@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="PesaPrintDbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Account">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="LinkedId" Type="Int64" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Merchant">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Shops" Relationship="Self.FK_dbo_Shops_dbo_Merchants_MerchantId" FromRole="Merchants" ToRole="Shops" />
+  </EntityType>
+  <EntityType Name="Shop">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="AgentNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="MerchantId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Merchant" Relationship="Self.FK_dbo_Shops_dbo_Merchants_MerchantId" FromRole="Shops" ToRole="Merchants" />
+    <NavigationProperty Name="Transactions" Relationship="Self.FK_dbo_Transactions_dbo_Shops_ShopId" FromRole="Shops" ToRole="Transactions" />
+  </EntityType>
+  <EntityType Name="Transaction">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TransactionCode" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ReceiptNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="TransactionTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Amount" Type="Double" Nullable="false" />
+    <Property Name="CustomerPhone" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="CustomerName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="TransactionType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="SmsMessage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="SystemBalance" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ShopId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Shop" Relationship="Self.FK_dbo_Transactions_dbo_Shops_ShopId" FromRole="Transactions" ToRole="Shops" />
+  </EntityType>
+  <Association Name="FK_dbo_Shops_dbo_Merchants_MerchantId">
+    <End Role="Merchants" Type="Self.Merchant" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Shops" Type="Self.Shop" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Merchants">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Shops">
+        <PropertyRef Name="MerchantId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_Transactions_dbo_Shops_ShopId">
+    <End Role="Shops" Type="Self.Shop" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Transactions" Type="Self.Transaction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Shops">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Transactions">
+        <PropertyRef Name="ShopId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="PesaPrintDatabaseEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Accounts" EntityType="Self.Account" />
+    <EntitySet Name="Merchants" EntityType="Self.Merchant" />
+    <EntitySet Name="Shops" EntityType="Self.Shop" />
+    <EntitySet Name="Transactions" EntityType="Self.Transaction" />
+    <AssociationSet Name="FK_dbo_Shops_dbo_Merchants_MerchantId" Association="Self.FK_dbo_Shops_dbo_Merchants_MerchantId">
+      <End Role="Merchants" EntitySet="Merchants" />
+      <End Role="Shops" EntitySet="Shops" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_Transactions_dbo_Shops_ShopId" Association="Self.FK_dbo_Transactions_dbo_Shops_ShopId">
+      <End Role="Shops" EntitySet="Shops" />
+      <End Role="Transactions" EntitySet="Transactions" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

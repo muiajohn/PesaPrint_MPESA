@@ -1,0 +1,41 @@
+@using PesaPrint.MPESA.Helpers
+<!-- START Sidebar (left)-->
+<div class="aside-inner">
+    <nav class="sidebar">
+        <!-- START sidebar nav-->
+        <ul class="nav">
+            <!-- END user info-->
+            <!-- Iterates over all sidebar items-->
+            <li class="nav-heading">
+                <span>Main Navigation</span>
+            </li>
+            <li class="@Html.isActive(controller: "Agent")">
+                <a href="@Url.Action("Index",new{controller="Home",area="Agent"})" title=" View Merchant">
+                    <em class="icon-menu"></em>
+                    <span>Merchant Area</span>
+                </a>
+            </li>
+            <li class="@Html.isActive(controller: "Agent")">
+                <a href="@Url.Action("Index",new{controller="Shops",area="Agent"})" title="Shops">
+                    <em class="icon-basket"></em>
+                    <span>Shops</span>
+                </a>
+            </li>
+            <li class="@Html.isActive(controller: "Agent")">
+                <a href="@Url.Action("Index",new{controller="Reports",area="Agent"})" title="Reports">
+                    <em class="icon-chart"></em>
+                    <span>Reports</span>
+                </a>
+            </li>
+            <li class="@Html.isActive(controller: "Agent")">
+                <a href="@Url.Action("Index",new{controller="Manage",area="Agent"})" title="Account">
+                    <em class="icon-user"></em>
+                    <span>Manage</span>
+                </a>
+            </li>
+           
+        </ul>
+        <!-- END sidebar nav-->
+    </nav>
+</div>
+<!-- END Sidebar (left)-->

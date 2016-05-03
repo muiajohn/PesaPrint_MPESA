@@ -1,0 +1,40 @@
+﻿@model PesaPrint.MPESA.ViewModels.IndexViewModel
+@{
+    ViewBag.Title = "Manage";
+}
+<h1><i class="fa fa-gears"></i> Manage <small>- Profile</small></h1>
+
+            <!-- START panel tab-->
+<div role="tabpanel" class="panel" style="width:65%;">
+    <!-- Nav tabs-->
+    <ul role="tablist" class="nav nav-tabs nav-justified">
+        <li role="presentation" class="active">
+            @Html.ActionLink("Change your password", "Index")
+        </li>
+        <li role="presentation">
+            @Html.ActionLink("Change your password", "ChangePassword")
+        </li>
+        <li role="presentation">
+            @Html.ActionLink("ChangeEmail", "ChangeEmail")
+        </li>
+    </ul>
+    <!-- Tab panes-->
+    <div class="tab-content p0">
+        <div id="home" role="tabpanel" class="tab-pane active">
+            
+            <img src="~/Content/Images/avatar.png" alt="" data-no-retina="" data-wow-offset="15" data-wow-duration=".5s" class="wow zoomIn animated" style="width:20%">
+          
+                <p>Name  :</p>
+                <p>Email :</p>
+            
+
+        </div>
+        <div id="password" role="tabpanel" class="tab-pane">
+            Change Password
+        </div>
+        <div id="email" role="tabpanel" class="tab-pane">
+            Change Email
+        </div>
+    </div>
+</div>
+<!-- END panel tab-->

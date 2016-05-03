@@ -1,0 +1,56 @@
+﻿@model IEnumerable<PesaPrint.MPESA.Models.Shop>
+
+@{
+    ViewBag.Title = "View Shops";
+}
+
+<h2><i class="fa fa-eye"></i> &nbsp;View Shops</h2>
+
+<div id="panelChart9" ng-controller="FlotChartController" class="panel panel-default" style="width:65%">
+   
+    <table class="table">
+
+        <tr>
+            &nbsp;
+            <th>
+                @Html.DisplayNameFor(model => model.Merchant.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AgentNumber)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Merchant.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AgentNumber)
+                </td>
+                <td> 
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "btn btn-primary btn-xs" }) 
+                   
+                  
+                    @Html.ActionLink("Details", "Details", new { id = item.Id }, new { @class = "btn btn-info btn-xs" }) 
+
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-danger btn-xs" })
+                </td>
+            </tr>
+        }
+
+    </table>
+    <div class="panel-footer" style="height:50px" align="right">
+
+
+        @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-success", @style = "height:32px" })
+    </div>
+    </div>

@@ -1,0 +1,42 @@
+﻿@model PesaPrint.MPESA.Models.Shop
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Shop</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AgentNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AgentNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MerchantId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MerchantId)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

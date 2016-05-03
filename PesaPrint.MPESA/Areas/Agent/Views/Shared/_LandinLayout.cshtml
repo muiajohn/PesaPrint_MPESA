@@ -1,0 +1,187 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Landing Page Template">
+    <meta name="keywords" content="bootstrap, app, theme">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Angle - Landing Page</title>
+    <!-- PREALOADER (loads asap)-->
+    @Styles.Render("~/bundles/preloadercs")
+    @Scripts.Render("~/bundles/preloaderjs")
+
+    <!-- FAVICON-->
+    <link rel="icon" href="img/favicon/favicon.ico">
+    <link rel="apple-touch-icon" href="img/favicon/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="57x57" href="img/favicon/apple-touch-icon-57x57-precomposed.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="img/favicon/apple-touch-icon-72x72-precomposed.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="img/favicon/apple-touch-icon-114x114-precomposed.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="img/favicon/apple-touch-icon-144x144-precomposed.png">
+    <!-- FONT-->
+
+    <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,400italic" rel="stylesheet" type="text/css">
+    <!-- ICONS-->
+    @Styles.Render("~/bundles/fontawesome")
+    @Scripts.Render("~/bundles/jquerybrowser")
+    <script>
+        if (window.jQBrowser.mobile && top.location != location) top.location.href = document.location.href;
+    </script>
+    <!-- VENDOR CSS-->
+    @Styles.Render("~/bundles/vendorcss")
+    <!-- SITE CSS-->
+    @Styles.Render("~/bundles/landingcss")
+    <!--[if lt IE 9]><script src="js/html5shiv.js"></script><script src="js/respond.min.js"></script><![endif]-->
+</head>
+<body>
+    <!-- WEBSITE PRELOADER-->
+    <div class="preloader">
+        <div class="loading">Loading ...</div>
+    </div>
+    <!-- START HEADER-->
+    <header id="header" class="header novideo">
+        <div class="full-screen">
+            <!-- START STICKY NAVBAR-->
+            <div class="navbar navbar-default navbar-fixed-top navbar-sticky">
+                <div class="container">
+                    <div class="navbar-header">
+                        <button type="button" data-toggle="collapse" data-target="#navbar-main" class="navbar-toggle">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a href="#" class="navbar-brand">
+                            <img src="~/Content/Images/logo-dark.png" alt="">
+                        </a>
+                    </div>
+                    <!-- MENU-->
+                    <div id="navbar-main" class="navbar-collapse collapse">
+                        <ul class="nav navbar-nav navbar-right main-navbar">
+                            <li>
+                                <a href="#header">Home</a>
+                            </li>
+                            <li>
+                                <a href="#features">Features</a>
+                            </li>
+                            <li>
+                                <a href="#shots">Shots</a>
+                            </li>
+                            <li>
+                                <a href="#plans">Plans</a>
+                            </li>
+                            <li>
+                                <a href="#download">
+                                    <strong>Download</strong>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- END STICKY NAVBAR-->
+            <div class="container">
+                <!-- MAIN LOGO-->
+                <div class="top-logo">
+                    <img src="~/Content/Images/logo.png" alt="">
+                </div>
+                <div class="row">
+                    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                        <!-- INTRO MESSAGE-->
+                        <div class="intro-section">
+                            <h1 class="intro">PesaPrint <strong>MPESA</strong> Reporting System</h1>
+                            <!-- DEMO BUTTON-->
+                            <div class="text-center">
+
+                                @Html.ActionLink("Login", "Login", new { controller = "Account" }, new { @class = "btn btn-lg btn-theme" })
+                                @Html.ActionLink("Register", "Register", new { controller = "Account"}, new { @class = "btn btn-lg btn-theme"})
+
+  
+                            </div>
+                        </div>
+                        <div class="intro-shot">
+                            <img src="~/Content/Images/header.shot.png" alt="Header shot" data-no-retina="" class="img-responsive">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- END HEADER-->
+    @RenderBody()
+
+    <!-- START FOOTER-->
+    <footer id="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6">
+                    <ul class="footer-nav">
+                        <li>
+                            <a href="#header" class="scrollto">Home</a>
+                        </li>
+                        <li>
+                            <a href="#features" class="scrollto">Features</a>
+                        </li>
+                        <li>
+                            <a href="#plans" class="scrollto">Plans</a>
+                        </li>
+                        <li>
+                            <a href="#download" class="scrollto">Download</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-sm-6">
+                    <!-- COPYRIGHT-->
+                    <p class="copyright">Angle &copy; 2015</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- END FOOTER-->
+    <!-- START SETTINGS-->
+    <div class="settings">
+        <div class="settings-inner">
+            <div class="settings-ctrl">
+                <em class="fa fa-cogs"></em>
+            </div>
+            <div class="settings-content">
+                <p>Themes</p>
+                <div class="setting-colors">
+                    <div data-load-css="css/theme-a.css" class="setting-color bg-info checked">
+                        <em class="fa fa-check"></em>
+                    </div>
+                    <div data-load-css="css/theme-b.css" class="setting-color bg-success">
+                        <em class="fa fa-check"></em>
+                    </div>
+                    <div data-load-css="css/theme-c.css" class="setting-color bg-purple">
+                        <em class="fa fa-check"></em>
+                    </div>
+                    <div data-load-css="css/theme-d.css" class="setting-color bg-primary">
+                        <em class="fa fa-check"></em>
+                    </div>
+                </div>
+                <p>Layout</p>
+                <div class="clearfix">
+                    <p class="pull-left">RTL</p>
+                    <div class="pull-right">
+                        <label for="rtlswitch" class="switch">
+                            <input type="checkbox" id="rtlswitch">
+                            <span></span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END SETTINGS-->
+    <!-- VENDOR SCRIPTS-->
+   
+    @Scripts.Render("~/bundles/jqueryeasing")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/storage")
+    @Scripts.Render("~/bundles/localize")
+
+    @Scripts.Render("~/bundles/vendorjs")
+</body>
+</html>

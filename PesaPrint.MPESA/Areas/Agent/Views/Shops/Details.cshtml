@@ -1,0 +1,54 @@
+﻿@model PesaPrint.MPESA.Models.Shop
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2><i class="fa fa-newspaper-o"></i> &nbsp;Details</h2>
+
+<div id="panelChart9" ng-controller="FlotChartController" class="panel panel-default" style="width:65%">
+
+    <div class="panel-heading" style="height:30px">
+     
+        <h4>Shop&nbsp;</h4>
+      
+    </div>
+    <div class="dl-horizontal">
+        <hr />
+        <dl>
+            <dt>
+                @Html.DisplayNameFor(model => model.Merchant.Name)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Merchant.Name)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Name)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Name)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.AgentNumber)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.AgentNumber)
+            </dd>
+
+        </dl>
+    </div>
+
+
+    <div class="panel-footer" style="height:50px" align="right">
+
+
+        @Html.ActionLink("Edit", "Edit", new { id = Model.Id }, new { @class = "btn btn-primary", @style = "height:32px" })
+        @Html.ActionLink("Back to List", "Index",null, new { @class = "btn btn-success", @style = "height:32px" })
+    </div>
+   
+</div>

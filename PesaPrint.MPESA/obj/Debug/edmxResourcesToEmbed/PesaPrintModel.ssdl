@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="PesaPrintDbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Accounts">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="nvarchar(max)" />
+    <Property Name="LinkedId" Type="bigint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Merchants">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" />
+    <Property Name="Email" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="Shops">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" />
+    <Property Name="AgentNumber" Type="nvarchar(max)" />
+    <Property Name="MerchantId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Transactions">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TransactionCode" Type="nvarchar(max)" />
+    <Property Name="ReceiptNumber" Type="nvarchar(max)" />
+    <Property Name="TransactionTime" Type="datetime" Nullable="false" />
+    <Property Name="Amount" Type="float" Nullable="false" />
+    <Property Name="CustomerPhone" Type="nvarchar(max)" />
+    <Property Name="CustomerName" Type="nvarchar(max)" />
+    <Property Name="TransactionType" Type="nvarchar(max)" />
+    <Property Name="SmsMessage" Type="nvarchar(max)" />
+    <Property Name="SystemBalance" Type="nvarchar(max)" />
+    <Property Name="ShopId" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_dbo_Shops_dbo_Merchants_MerchantId">
+    <End Role="Merchants" Type="Self.Merchants" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Shops" Type="Self.Shops" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Merchants">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Shops">
+        <PropertyRef Name="MerchantId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_Transactions_dbo_Shops_ShopId">
+    <End Role="Shops" Type="Self.Shops" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Transactions" Type="Self.Transactions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Shops">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Transactions">
+        <PropertyRef Name="ShopId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="PesaPrintDbModelStoreContainer">
+    <EntitySet Name="Accounts" EntityType="Self.Accounts" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Merchants" EntityType="Self.Merchants" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Shops" EntityType="Self.Shops" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Transactions" EntityType="Self.Transactions" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_dbo_Shops_dbo_Merchants_MerchantId" Association="Self.FK_dbo_Shops_dbo_Merchants_MerchantId">
+      <End Role="Merchants" EntitySet="Merchants" />
+      <End Role="Shops" EntitySet="Shops" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_Transactions_dbo_Shops_ShopId" Association="Self.FK_dbo_Transactions_dbo_Shops_ShopId">
+      <End Role="Shops" EntitySet="Shops" />
+      <End Role="Transactions" EntitySet="Transactions" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

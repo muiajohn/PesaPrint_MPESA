@@ -1,0 +1,106 @@
+﻿@{
+    ViewBag.Title = "Column";
+}
+
+<div id="visualization" style="width:600px;height:300px" >
+
+</div>
+
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+@section Scripts{
+    <script>
+
+        $(document).ready(function () {
+            //Load Data Here
+            var chartData = null;
+           
+            $.ajax({
+                url: '/AgentChart/GetTransactionData',
+                type: 'GET',
+                dataType: 'json',
+                data: '',
+                success: function (d) {
+                    chartData = d;
+                },
+                error: function () {
+                    alert('Error!');
+                }
+            }).done(function(){
+                drawChart(chartData);
+                        });
+        });
+
+        $(document).ready(function () {
+            //Load Data Here
+            var chrData = null;
+        $.ajax({
+            url: '/AgentChart/GetShopsData',
+            type: 'GET',
+            dataType: 'json',
+            data: '',
+            success: function (d) {
+                chrData = d;
+            },
+            error: function () {
+                alert('Error!');
+            }
+        }).done(function(){
+            drawChart(chrData);
+        });
+        });
+
+        
+        function drawChart(d) {
+            var chartData = d;
+            var chrData = d;
+            var data = null;
+            data = google.visualization.arrayToDataTable(chartData);
+            data = google.visualization.arrayToDataTable(chrData);
+
+            var view = new google.visualization.DataView(data);
+            view.setColumns([0, {
+
+                type: 'number',
+                label: data.getColumnLabel(0),
+                calc: function () { return 0 }
+            }, {
+                type: 'number',
+                label: data.getColumnLabel(1),
+                calc: function () { return 0 }
+
+
+            }]);
+            var chart = new google.visualization.ColumnChart(document.getElementById('visualization'));
+            var options = {
+                title: 'Performance By Shop',
+                legend: 'bottom',
+                hAxis: {
+                    title: 'Shop',
+                    format: '#'
+                },
+                vAxis: {
+                    minValue: 0,
+                    maxValue: 1000000,
+                    title: 'Transactions'
+
+                },
+                chartArea: {
+                    left: 100, top: 50, width: '70%', height: '50%'
+
+                },
+                animation: {
+                    duration: 1000
+                }
+            };
+            var runFirstTime = google.visualization.events.addListener(chart, 'ready', function () {
+
+                google.visualization.events.removeListener(runFirstTime);
+                chart.draw(data, options);
+            });
+            chart.draw(view, options);
+
+        }
+
+        google.load('visualization', '1', { packages: ['corechart'] });
+    </script>
+}
